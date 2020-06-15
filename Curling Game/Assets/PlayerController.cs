@@ -45,7 +45,7 @@ public class PlayerController : NetworkBehaviour
 
             float spd = 10f;
 
-            if (Input.GetMouseButton(0)) {
+            if (Input.GetMouseButton(1)) {
 
                 float sinDiff = 0;
                 float cosDiff = 0;
