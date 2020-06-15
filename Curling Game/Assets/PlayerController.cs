@@ -40,6 +40,7 @@ public class PlayerController : NetworkBehaviour
             angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             float d = (float)(angle * Math.PI) / 180;
+            
 
 
             float spd = 10f;
@@ -64,8 +65,8 @@ public class PlayerController : NetworkBehaviour
                 }
             }
 
-            hspd = (vel * cos);
-            vspd = (vel * sin);
+            hspd += (vel * cos);
+            vspd += (vel * sin);
 
 
             //vspd -= weight;
