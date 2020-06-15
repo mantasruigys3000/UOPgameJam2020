@@ -47,11 +47,25 @@ public class PlayerController : NetworkBehaviour
 
             if (Input.GetMouseButton(0)) {
 
+                float sinDiff = 0;
+                float cosDiff = 0;
+
+                if (sin !=0 && cos != 0) {
+                     sinDiff =Mathf.Abs(sin) - Mathf.Abs(Mathf.Sin(d));
+                     cosDiff =Mathf.Abs(cos) - Mathf.Abs(Mathf.Cos(d));
+                }
+                float diff = sinDiff + cosDiff;
+
                 sin = Mathf.Sin(d);
                 cos = Mathf.Cos(d);
 
                 vel += 0.05f;
+                vel -= (diff*17);
                 vel = (vel > maxVel) ? maxVel : vel;
+
+
+
+                
 
 
 
@@ -64,9 +78,11 @@ public class PlayerController : NetworkBehaviour
                     vspd = 0;
                 }
             }
+            hspd = (vel * cos);
+            vspd = (vel * sin);
 
-            hspd += (vel * cos);
-            vspd += (vel * sin);
+
+
 
 
             //vspd -= weight;
