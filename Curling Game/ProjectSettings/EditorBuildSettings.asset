@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+<<<<<<< HEAD
   - enabled: 0
     path: Assets/Scenes/TeoScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/MantasTest.unity
     guid: 7e8815bec98d3274eb3a9cf2fd0a4129
+=======
+  - enabled: 1
+    path: Assets/Scenes/MantasDontFuckingTouchIt.unity
+    guid: c093b881384d1df40ae4fd5d52fa4ab2
+>>>>>>> aae0824e12618dc9a79ac11bd2d4bb4d5b24c3d2
   m_configObjects: {}
