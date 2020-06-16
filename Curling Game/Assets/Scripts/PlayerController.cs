@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PlayerController : NetworkBehaviour
 {
+    public GameObject swinger;
+    public Camera cam;
     public float weight = 5f;
     public float vspd = 0;
     public float hspd = 0;
@@ -28,6 +30,7 @@ public class PlayerController : NetworkBehaviour
     
 
         if (isLocalPlayer) {
+            
             Vector3 mouse_pos;
             Transform target = gameObject.transform; //Assign to the object you want to rotate
             Vector3 object_pos;
@@ -35,13 +38,28 @@ public class PlayerController : NetworkBehaviour
 
             mouse_pos = Input.mousePosition;
             mouse_pos.z = 5.23f; //The distance between the camera and object
-            object_pos = Camera.main.WorldToScreenPoint(target.position);
+            object_pos = cam.WorldToScreenPoint(target.position);
             mouse_pos.x = mouse_pos.x - object_pos.x;
             mouse_pos.y = mouse_pos.y - object_pos.y;
             angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            float d = (float)(angle * Math.PI) / 180;
+            //transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            swinger.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            //swinger.transform.position = gameObject.transform.position;
             
+            
+            float d = (float)(angle * Math.PI) / 180;
+            float asin = Mathf.Sin(d);
+            float acos = Mathf.Cos(d);
+
+            swinger.transform.position = new Vector3(transform.position.x + (acos * 1f), transform.position.y + (asin * 1f ), transform.position.z);
+
+
+
+
+
+            //swinger.transform.RotateAround(transform.position, swinger.transform.right, angle);
+
+
 
 
             float spd = 10f;
@@ -98,7 +116,30 @@ public class PlayerController : NetworkBehaviour
             Vector3 currentPos = transform.position;
             Vector3 newPos = new Vector3(currentPos.x + (hspd * Time.deltaTime), currentPos.y + (vspd * Time.deltaTime), currentPos.y+ 0.5f);
             transform.position = newPos;
+        } else {
+            gameObject.GetComponent<PlayerController>().enabled = false;
+            cam.enabled = false;
+        }
+
+        if (Input.GetMouseButton(0)) {
+            CmdYeet();
         }
         
+    }
+
+    [Command]
+    void CmdYeet() {
+        RpcYeet();
+    }
+
+    [ClientRpc]
+    void RpcYeet() {
+        swingScript swingerScript = swinger.GetComponent<swingScript>();
+        if (swingerScript.inCollision != null) {
+            GameObject obj = swingerScript.inCollision;
+            //obj.transform.position = Vector3.zero;
+            Rigidbody2D srb = obj.GetComponent<Rigidbody2D>();
+            srb.velocity = swinger.transform.right * 4f;
+        }
     }
 }
