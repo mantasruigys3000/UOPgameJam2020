@@ -8,6 +8,7 @@ public class PlayerController : NetworkBehaviour
 {
     public GameObject swinger;
     public Camera cam;
+    public GameObject ballPrefab;
     public float weight = 5f;
     public float vspd = 0;
     public float hspd = 0;
@@ -15,6 +16,9 @@ public class PlayerController : NetworkBehaviour
     float maxVel = 7f;
     float sin = 0;
     float cos = 0;
+
+    [SyncVar]
+    Boolean hasBall = false;
 
 
     public Rigidbody2D rb;
@@ -119,15 +123,39 @@ public class PlayerController : NetworkBehaviour
             cam.enabled = false;
         }
 
-        if (Input.GetMouseButton(0)) {
-            CmdYeet();
+        if (Input.GetMouseButtonDown(0)) {
+            if (hasBall) {
+                CmdYeet();
+            }
+            
         }
         
     }
 
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.tag == "curlingStone") {
+            CmdSetStone();
+
+        }
+    }
+
     [Command]
     void CmdYeet() {
+        GameObject ball = Instantiate(ballPrefab, transform.position, Quaternion.identity);
+        curlingStone stone = ball.GetComponent<curlingStone>();
+        ball.GetComponent<Rigidbody2D>().velocity = -ball.transform.right * 20f;
+        
+        stone.owner = gameObject;
+
+
+        NetworkServer.Spawn(ball);
+
         RpcYeet();
+    }
+
+    void CmdSetStone() {
+        hasBall = true;
+
     }
 
     [ClientRpc]
@@ -137,7 +165,14 @@ public class PlayerController : NetworkBehaviour
             GameObject obj = swingerScript.inCollision;
             //obj.transform.position = Vector3.zero;
             Rigidbody2D srb = obj.GetComponent<Rigidbody2D>();
-            srb.velocity = swinger.transform.right * 4f;
+            srb.velocity = swinger.transform.right* 2;
+
+
+
         }
+    }
+
+    void RpcSetStone(curlingStone stone) {
+        
     }
 }
