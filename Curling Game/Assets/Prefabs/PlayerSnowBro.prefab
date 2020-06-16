@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2012717984}
   - component: {fileID: 2012717982}
   - component: {fileID: 2012717983}
+  - component: {fileID: 7964835083279383101}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -42,7 +43,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.7529412, g: 0.8627451, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -83,6 +84,40 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012717981}
   m_Enabled: 1
+--- !u!114 &7964835083279383101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012717981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff5335a7357baa3489a469d0ca0f40f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distortion:
+    enabled: 1
+    amount: -5
+    centerX: 0
+    centerY: 0
+    amountX: 1
+    amountY: 1
+    scale: 1
+  vignette:
+    enabled: 1
+    color: {r: 0, g: 0, b: 0, a: 1}
+    center: {x: 0.5, y: 0.5}
+    intensity: 0.35
+    smoothness: 0.8
+    roundness: 1
+    blur: 0
+    desaturate: 0
+  chromaticAberration:
+    enabled: 0
+    color: {r: 0, g: 1, b: 0, a: 1}
+    amount: 0
+  m_Shader: {fileID: 4800000, guid: 136ab50fe2b9ad64d9c22adc3668abb7, type: 3}
 --- !u!1 &533956507758490595
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,9 +409,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   swinger: {fileID: 533956507758490595}
-  cam: {fileID: 8768815976476281380, guid: 01188c8975395ab459f3642911099ad9, type: 3}
+  cam: {fileID: 2012717982}
   weight: 0.005
-  color1: {r: 0, g: 0, b: 0, a: 0}
   vspd: 0
   hspd: 0
   vel: 0
