@@ -45,8 +45,6 @@ public class PlayerController : NetworkBehaviour
             //transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             swinger.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             //swinger.transform.position = gameObject.transform.position;
-            
-            
             float d = (float)(angle * Math.PI) / 180;
             float asin = Mathf.Sin(d);
             float acos = Mathf.Cos(d);

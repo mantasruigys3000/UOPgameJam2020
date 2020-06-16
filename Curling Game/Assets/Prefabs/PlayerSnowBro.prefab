@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: -7982006288774008104}
   - component: {fileID: 7332686454371303105}
   m_Layer: 0
-  m_Name: PlayerPrefab
+  m_Name: PlayerSnowBro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,8 +374,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   swinger: {fileID: 533956507758490595}
-  cam: {fileID: 2012717982}
+  cam: {fileID: 8768815976476281380, guid: 01188c8975395ab459f3642911099ad9, type: 3}
   weight: 0.005
+  color1: {r: 0, g: 0, b: 0, a: 0}
   vspd: 0
   hspd: 0
   vel: 0
