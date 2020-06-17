@@ -20,12 +20,19 @@ public class curlingStone : NetworkBehaviour {
 
     // Update is called once per frame
     void Update() {
-        
+        if(GetComponent<Rigidbody2D>().velocity.magnitude < 2f) {
+            Debug.Log("Should not be dealy anymore");
+            CmdNotShot();
+        }
     }
 
     [Command]
     void CmdSetPos() {
         
+    }
+    
+    void CmdNotShot() {
+        isShot = false;
     }
 
     [ClientRpc]
