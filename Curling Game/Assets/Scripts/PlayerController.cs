@@ -47,7 +47,7 @@ public class PlayerController : NetworkBehaviour {
             Transform target = gameObject.transform; //Assign to the object you want to rotate
             Vector3 object_pos;
             float angle;
-
+            
             mouse_pos = Input.mousePosition;
             mouse_pos.z = 5.23f; //The distance between the camera and object
             object_pos = cam.WorldToScreenPoint(target.position);
@@ -60,7 +60,6 @@ public class PlayerController : NetworkBehaviour {
             float d = (float)(angle * Math.PI) / 180;
             float asin = Mathf.Sin(d);
             float acos = Mathf.Cos(d);
-
             swinger.transform.position = new Vector3(transform.position.x + (acos * 1f), transform.position.y + (asin * 1f ), transform.position.z);
             swingStone.transform.position = new Vector3(transform.position.x + (acos * 1f), transform.position.y + (asin * 1f), transform.position.z);
             swingStone.GetComponent<SpriteRenderer>().enabled = hasBall;
