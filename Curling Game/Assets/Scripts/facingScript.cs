@@ -32,12 +32,15 @@ public class facingScript : MonoBehaviour
         }
         else if(angle>=91 && angle<=180)
         {
-            anim.Play("Idle");
-            gameObject.transform.rotation = new Quaternion(
-    gameObject.transform.rotation.x,
-    180f,
-    gameObject.transform.rotation.z,0
-);
+            anim.Play("IdleBl");
+        }
+        else if (angle <= 1 && angle >= -90)
+        {
+            anim.Play("IdleFwrd");
+        }
+        else if (angle <= -90 && angle >= -180)
+        {
+            anim.Play("IdleFl");
         }
     }
 }
