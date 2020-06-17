@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MantasTest.unity
     guid: 7e8815bec98d3274eb3a9cf2fd0a4129
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: e913113cad32cdc4f9b8e16126091c4f
   m_configObjects: {}
