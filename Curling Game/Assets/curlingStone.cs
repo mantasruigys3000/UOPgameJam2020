@@ -1,4 +1,5 @@
 ﻿using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ using UnityEngine;
 public class curlingStone : NetworkBehaviour {
     [SyncVar]
     public GameObject owner;
+    [SyncVar]
+    public Boolean isShot = false;
 
     // Start is called before the first frame update
 
